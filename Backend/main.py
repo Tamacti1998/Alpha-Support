@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 
 app = FastAPI()
+FILE_PATH = Path("users.json")
 
 
 @app.get("/")
@@ -55,7 +56,7 @@ def create_car(buyer: car):
 
 
 # Submitting data to a JSON file
-FILE_PATH = Path("users.json")
+
 
 class User(BaseModel):
     name: str
@@ -75,7 +76,7 @@ def create_user(user: User):
 
     # Save all users back to the file
     with FILE_PATH.open("w", encoding="utf-8") as file:
-        json.dump(users, file, indent=4)
+        json.dump(users, file, indent=4) # dump() write JSON data to a file
 
     return {
         "message": "User saved successfully",
